@@ -3,7 +3,6 @@ import sys
 from index import Ui_Form
 from choose import Choose
 
-form
 class Main(object):
 	def __init__(self):
 		Form = Ui_Form()

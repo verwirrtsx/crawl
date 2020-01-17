@@ -10,6 +10,20 @@
 
 from PySide2 import QtCore, QtGui, QtWidgets
 from get_stoty import Getsotry
+
+class MThread(QtCore.QThread):
+
+    def __init__(self,story_name):
+        super().__init__()
+        self.story_name= story_name
+
+    def run(self):
+        # 线程相关代码
+        if Getsotry(self.story_name) :
+            print('ok')
+        else:
+            print('no')
+
 class Story(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -33,13 +47,10 @@ class Story(object):
         self.label.setText(QtWidgets.QApplication.translate("Form", "小说", None, -1))
         self.pushButton.setText(QtWidgets.QApplication.translate("Form", "下载", None, -1))
     def down(self):
-        new_thread = QtCore.QThread()
-        new_thread.start() 
         story_name = self.lineEdit.text()
-        if Getsotry(story_name) :
-            print('ok')
-        else:
-            print('no')
-        new_thread.terminate()
+        print(story_name)
+        new_thread = MThread(story_name)
+        new_thread.start()
+        sys.exit(app.exec_())
 
 

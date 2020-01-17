@@ -16,10 +16,10 @@ class Gmus(object):
 		mlist = requests.get(url)
 		res =json.loads(mlist.text)
 		musid = res['abslist'][0]['MUSICRID'][6:]
-		durl ="http://www.kuwo.cn/url?format=mp3&rid=%s&response=url&type=convert_url3&br=128kmp3&from=web" % musid
+		durl ="http://www.kuwo.cn/url?format=mp3&rid=%s&response=url&type=convert_url3&br=320kmp3&from=web" % musid
 		mus_res = requests.get(durl)
 		dowm =json.loads(mus_res.text)
 		path = 'C:\\Users\\Administrator\\Desktop\\some\\py\\crawl\\mus\\'
 		request.urlretrieve(dowm['url'], path+self.dowm+'.mp3')
 
-# Gmus("老街")
+Gmus("火红的撒日朗")
